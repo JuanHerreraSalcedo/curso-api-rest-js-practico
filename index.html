@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./styles/app.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@700;800&family=Red+Hat+Display:wght@400;500&display=swap" rel="stylesheet" />
+    
+    <title>Movies</title>
+</head>
+<body>
+    <header id="header" class="header-container">
+        <span class="header-arrow inactive">&lt;</span>
+        <h1 class="header-title">Movies</h1>
+        <h1 class="header-title--categoryView inactive">Acción</h1>
+
+        <form id="searchForm" class="header-searchForm">
+            <input type="text" placeholder="John Wick">
+            <button>🔎</button>
+        </form>
+    </header>
+
+    <section id="trendingPreview" class="tredingPreview-container">
+        <div class="tredingPreview-header">
+            <h2 class="tredingPreview-title">Tendencias</h2>
+            <button class="tredingPreview-btn">Ver más</button>
+        </div>
+
+            <article class="trendingPreview-movieList">
+            <!--<div class="movie-container">
+                <img src="http://www.filmaffinity.com/es/movieimage.php?imageId=471498370" alt="nombre de la pelicula">
+            </div>--> 
+
+        </article>
+    </section>
+
+    <section id="categoriesPreview" class="categoriesPreview-container">
+        <h2 class="categoriesPreview-title">Categorías</h2>
+
+        <article class="categoriesPreview-list">
+            <div class="category-container">
+                <h3 id="id28" class="category-title">Romance</h3>
+            </div>
+            <div class="category-title">
+                <h3 id="id16" class="category-title">Acción</h3>
+            </div>
+            <div class="category-title">
+                <h3 id="id14" class="category-title">Drama</h3>
+            </div>
+        </article>
+    </section>
+
+    <section id="genericList" class="genericList-container inactive">
+        <div class="movie-container">
+            <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg" class="movie-img"
+                alt="Nombre de la pelicula">
+        </div>
+
+        <div class="movie-container">
+            <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
+                class="movie-img" alt="Nombre de la pelicula">
+        </div>
+
+        <div class="movie-container">
+            <img src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
+                class="movie-img" alt="Nombre de la pelicula">
+        </div>
+    </section>
+
+    <section id="movieDetail" class="movieDetail-container inactive">
+        <h1 class="movieDetail-title">John Wick</h1>
+        <span class="movieDetail-score">7.6</span>
+        <p class="movieDetail-description">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe enim hic doloremque tenetur! Dignissimos
+            incidunt tenetur molestias nam culpa sapiente aliquid vel aliquam cum impedit dolor atque, quidem eum iure?
+        </p>
+        <article class="categories-list">
+            <div class="category-container">
+                <h3 id="id28" class="category-title">Romance</h3>
+            </div>
+
+            <div class="category-container">
+                <h3 id="id16" class="category-title">Drama</h3>
+            </div>
+
+            <div class="category-container">
+                <h3 id="id14" class="category-title">Acción</h3>
+            </div>
+        </article>
+
+        <article class="relatedMovies-container">
+            <h2 class="relatedMovies-title">Peliculas similares</h2>
+
+            <div class="relatedMovies-scrollContainer">
+                <div class="movie-container">
+                    <img src="https://pics.filmaffinity.com/John_Wick_Otro_d_a_para_matar-471498370-large.jpg"
+                        alt="nombre de la pelicula" />
+                </div>
+
+                <div class="movie-container">
+                    <img src="https://pics.filmaffinity.com/John_Wick_Otro_d_a_para_matar-471498370-large.jpg"
+                        alt="nombre de la pelicula" />
+                </div>
+
+                <div class="movie-container">
+                    <img src="https://pics.filmaffinity.com/John_Wick_Otro_d_a_para_matar-471498370-large.jpg"
+                        alt="nombre de la pelicula" />
+                </div>
+            </div>
+        </article>
+    </section>
+
+    <footer>Hecho con dedicación por @JuanHerre</footer>
+    <script src="./src/secrets.js"></script>
+    <script src="./src/main.js"></script>
+</body>
+
+</html>
