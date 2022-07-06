@@ -238,13 +238,19 @@ button {
 }
 
 #id28 { --idColor: var(var(--yellow-light-1));}
-#id18 { --idColor: var(var(--yellow-light-2));}
+#id12 { --idColor: var(var(--yellow-light-2));}
 #id16 { --idColor: var(var(--green));}
-#id17 { --idColor: var(var(--lighBlue));}
-#id28 { --idColor: var(var(--darkBlue));}
-#id16 { --idColor: var(var(--red));}
-#id14 { --idColor: var(var(--dark-salmon));}
-
+#id35 { --idColor: var(var(--lighBlue));}
+#id80 { --idColor: var(var(--darkBlue));}
+#id99 { --idColor: var(var(--red));}
+#id18 { --idColor: var(var(--dark-salmon));}
+#id10751 { --idColor: var(var(--yellow-light-1));}
+#id14 { --idColor: var(var(--yellow-light-2));}
+#id36 { --idColor: var(var(--green));}
+#id27 { --idColor: var(var(--lighBlue));}
+#id10402 { --idColor: var(var(--darkBlue));}
+#id9648 { --idColor: var(var(--red));}
+#id10749 { --idColor: var(var(--dark-salmon));}
 
 /*Generic List (search, trending & category)*/
 
