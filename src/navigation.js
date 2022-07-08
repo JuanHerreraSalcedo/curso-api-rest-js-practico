@@ -81,6 +81,10 @@ function movieDetailsPage() {
     categoriesPreviewSection.classList.add('inactive');
     genericSection.classList.add('inactive');
     movieDetailSection.classList.remove('inactive');
+
+    const [_, categoryData] = location.hash.split('='); // => ['#category', 'id-name']
+    const [categoryId, categoryName] = categoryData.split('-');
+    getMoviesByCategory(categoryId); 
 }
 function searchPage() {
     console.log('Search');
