@@ -5,6 +5,7 @@
 :root {
     --yellow-light-1: #DAF7A6;
     --yellow-light-2: #EECC75;
+    --yellow-light-3: #eefcd5;
     --orange: #FF5733;
     --yellow: #FFC300;
     --red1: #C70030;
@@ -107,7 +108,26 @@ html {
   .movie-container {
     cursor: pointer;
   }
-  
+
+   .movie-container--loading {
+    background-color: var(--yellow-light-3);
+    border-radius: 8px;
+    height: 25px;
+    min-height: 25px;
+    max-height: 25px;
+    width: 150px;
+    min-width: 150px;
+    max-width: 150px;
+    margin-bottom: 15px;
+    animation: loading-skeleton infinite 1.5;
+  } 
+
+  .movie-container--loading:nth-child(2){
+    animation-delay: .2s
+  }
+  .movie-container--loading:nth-child(3){
+    animation-delay: .4s;
+  }
   .movie-img {
     border-radius: 8px;
   }
@@ -359,4 +379,15 @@ html {
   /* Navigation */
   .inactive {
     display: none;
+  }
+
+  /* Animation */
+
+  @keyframes loading-skeleton {
+    0%, 100% {
+      opacity: 100%;
+    }
+    50% {
+      opacity: 0%;
+    }
   }
