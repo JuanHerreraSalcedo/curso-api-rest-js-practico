@@ -17,6 +17,7 @@ const api = axios.create({
 
         // console.log(entry.target.setAttribute)
         const url = entry.target.getAttribute('data-img')
+        //console.log(entry.target)
         entry.target.setAttribute('src', url);
       }
     }); 
@@ -36,10 +37,13 @@ const api = axios.create({
       movieImg.classList.add('movie-img');
       movieImg.setAttribute('alt', movie.title);
       movieImg.setAttribute(
-        lazyLoad ? 'data-img' : src,
+        lazyLoad ? 'data-img' : 'src',
         'https://image.tmdb.org/t/p/w300' + movie.poster_path,
-      );
-
+        );
+        movieImg.addEventListener('error', ()=> {
+          movieImg.setAttribute('src', 'https://scontent.fclo7-1.fna.fbcdn.net/v/t1.6435-9/97247836_249085386439697_6517225843587022848_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeH8d4lrgBWGnGFKIlfUDivhSm2FpYByltxKbYWlgHKW3CRGO76i28Jsu8Dmmtl7UoZ3uc0E9iDD7LordkoZHXo4&_nc_ohc=BHdcsdgx7j4AX-FRbBS&tn=PNxswDJ9Mvtdc5Hc&_nc_ht=scontent.fclo7-1.fna&oh=00_AT_SFK9Lh--WvDmtUH8iI0jbwEEGaT2aJzXbcSFdPOtclg&oe=62F431D5' )
+        })
+        
       //lazyLoader.observe(movieImg);
 
       if(lazyLoad) {
@@ -96,7 +100,7 @@ const api = axios.create({
     });
     const movies = data.results;
   
-    createMovies(movies, genericSection);
+    createMovies(movies, genericSection, true);
   }
   
   async function getMoviesBySearch(query) {
