@@ -1,3 +1,7 @@
+let maxPage;
+let page = 1;
+let infiniteScroll;
+
 searchFormBtn.addEventListener('click', () => {
     location.hash = '#search=' + searchFormInput.value;
   });
@@ -13,9 +17,15 @@ searchFormBtn.addEventListener('click', () => {
   
   window.addEventListener('DOMContentLoaded', navigator, false);
   window.addEventListener('hashchange', navigator, false);
+  window.addEventListener('sroll', infiniteScroll, false);
   
   function navigator() {
     console.log({ location });
+
+    if (infiniteScroll) {
+      window.removeEventListener('scroll', infiniteScroll, {passive: false});
+      infiniteScroll = undefined;
+    }
     
     if (location.hash.startsWith('#trends')) {
       trendsPage();
@@ -31,6 +41,10 @@ searchFormBtn.addEventListener('click', () => {
   
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
+
+    if (infiniteScroll){
+      window.addEventListener('scroll', infiniteScroll, false);
+    }
   }
   
   function homePage() {
@@ -76,6 +90,8 @@ searchFormBtn.addEventListener('click', () => {
     headerCategoryTitle.innerHTML = categoryName;
     
     getMoviesByCategory(categoryId);
+    infiniteScroll = getPaginatedMoviesByCategory(categoryId);
+
   }
   
   function movieDetailsPage() {
@@ -118,6 +134,8 @@ searchFormBtn.addEventListener('click', () => {
     // ['#search', 'platzi']
     const [_, query] = location.hash.split('=');
     getMoviesBySearch(query);
+
+    infiniteScroll = getPaginatedMoviesBySearch(query);
   }
   
   function trendsPage() {
@@ -139,4 +157,6 @@ searchFormBtn.addEventListener('click', () => {
     headerCategoryTitle.innerHTML = 'Tendencias';
   
     getTrendingMovies();
+
+    infiniteScroll = getPaginatedTrendingMovies;
   }
