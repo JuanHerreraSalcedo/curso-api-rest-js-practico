@@ -24,6 +24,8 @@ function likeMovie(movie){
   //movie.id
   const likedMovies = likedMoviesList();
 
+  console.log(likedMovies);
+
   if (likedMovies[movie.id]) {
     likedMovies[movie.id] = undefined;
     //console.log('la pelicula ya se encontraba en el LS, deberiamos retirarla');
@@ -79,6 +81,7 @@ function createMovies(movies, container, { lazyLoad = false, clean = true } = {}
 
     const movieBtn = document.createElement('button');
     movieBtn.classList.add('movie-btn');
+    likedMoviesList()[movie.id] && movieBtn.classList.add('movie-btn--liked');
     movieBtn.addEventListener('click', () => {
       movieBtn.classList.toggle('movie-btn--liked');
       //se tiene que agregar la pelicula en LS
@@ -276,10 +279,18 @@ async function getMovieById(id) {
   getRelatedMovieById(id);
 }
 
-
 async function getRelatedMovieById(id) {
   const { data } = await api(`movie/${id}/recommendations`);
   const relatedMovies = data.results;
 
   createMovies(relatedMovies, relatedMoviesContainer);
+}
+
+function getLikedMovies() {
+  const likedMovies = likedMoviesList();
+  const moviesArray = Object.values(likedMovies);
+  
+  createMovies(moviesArray, likedMoviesListArticle, { lazyLoad: true, clean: true});
+  
+  console.log(likedMovies)
 }
