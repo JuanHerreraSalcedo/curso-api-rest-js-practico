@@ -1,3 +1,5 @@
+//Data
+
 const api = axios.create({
   baseURL: 'https://api.themoviedb.org/3/',
   headers: {
@@ -7,6 +9,33 @@ const api = axios.create({
     'api_key': API_KEY,
   },
 });
+function likedMoviesList(){
+  const item = JSON.parse(localStorage.getItem('liked_movies'));
+  let movies;
+
+  if (item) {
+    movies = item;
+  } else {
+    movies = {};
+  }
+  return movies; 
+}
+function likeMovie(movie){
+  //movie.id
+  const likedMovies = likedMoviesList();
+
+  if (likedMovies[movie.id]) {
+    likedMovies[movie.id] = undefined;
+    //console.log('la pelicula ya se encontraba en el LS, deberiamos retirarla');
+    //removerla
+  } else {
+    likedMovies[movie.id] = movie;
+    //console.log('la pelicula no se encontraba en el LS, deberiamos agregarla');
+    //agregar la peli a ls
+  }
+
+  localStorage.setItem('liked_movies',JSON.stringify(likedMovies));
+}
 
 
 // Utils
@@ -32,9 +61,7 @@ function createMovies(movies, container, { lazyLoad = false, clean = true } = {}
   movies.forEach(movie => {
     const movieContainer = document.createElement('div');
     movieContainer.classList.add('movie-container');
-    movieContainer.addEventListener('click', () => {
-      location.hash = '#movie=' + movie.id;
-    });
+    movieContainer
 
     const movieImg = document.createElement('img');
     movieImg.classList.add('movie-img');
@@ -43,17 +70,29 @@ function createMovies(movies, container, { lazyLoad = false, clean = true } = {}
       lazyLoad ? 'data-img' : 'src',
       'https://image.tmdb.org/t/p/w300' + movie.poster_path,
     );
+    movieImg.addEventListener('click', () => {
+      location.hash = '#movie=' + movie.id;
+    });
     movieImg.addEventListener('error', () => {
-      movieImg.setAttribute('src', 'https://scontent.fclo7-1.fna.fbcdn.net/v/t1.6435-9/97247836_249085386439697_6517225843587022848_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeH8d4lrgBWGnGFKIlfUDivhSm2FpYByltxKbYWlgHKW3CRGO76i28Jsu8Dmmtl7UoZ3uc0E9iDD7LordkoZHXo4&_nc_ohc=BHdcsdgx7j4AX-FRbBS&tn=PNxswDJ9Mvtdc5Hc&_nc_ht=scontent.fclo7-1.fna&oh=00_AT_SFK9Lh--WvDmtUH8iI0jbwEEGaT2aJzXbcSFdPOtclg&oe=62F431D5')
-    })
+      movieImg.setAttribute('src', 'https://scontent.fclo7-1.fna.fbcdn.net/v/t1.6435-9/97247836_249085386439697_6517225843587022848_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeH8d4lrgBWGnGFKIlfUDivhSm2FpYByltxKbYWlgHKW3CRGO76i28Jsu8Dmmtl7UoZ3uc0E9iDD7LordkoZHXo4&_nc_ohc=BHdcsdgx7j4AX-FRbBS&tn=PNxswDJ9Mvtdc5Hc&_nc_ht=scontent.fclo7-1.fna&oh=00_AT_SFK9Lh--WvDmtUH8iI0jbwEEGaT2aJzXbcSFdPOtclg&oe=62F431D5',);
+    });
 
+    const movieBtn = document.createElement('button');
+    movieBtn.classList.add('movie-btn');
+    movieBtn.addEventListener('click', () => {
+      movieBtn.classList.toggle('movie-btn--liked');
+      //se tiene que agregar la pelicula en LS
+      likeMovie(movie);
+    });
     //lazyLoader.observe(movieImg);
 
     if (lazyLoad) {
       lazyLoader.observe(movieImg);
     }
     movieContainer.appendChild(movieImg);
+    movieContainer.appendChild(movieBtn);
     container.appendChild(movieContainer);
+
   });
 }
 
